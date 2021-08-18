@@ -1,0 +1,11 @@
+{
+  "release": "2021-07-20T20:53:02.696Z",
+  "title": "Album",
+  "runtime": "03:03:03",
+  "song": [
+    {
+      "title": "Song 1",
+      "lyrics": "lyrics\nlyrics\nlyrics\nlyrics\nlyrics"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: iltimasd/roy-sveltekit
+  base_url: https://roy-kit-two.vercel.app/
+  auth_endpoint: /api/auth
+  display_url: https://roy-kit-two.vercel.app/
+
+  
+publish_mode: editorial_workflow # Allows you to save drafts before publishing them
+media_folder: static/uploads # Media files will be stored in the repo under static/images/uploads
+public_folder: /uploads # The src attribute for uploaded media will begin with /images/uploads
+media_library:
+  name: uploadcare
+  config:
+    publicKey: f5e1113c602e420cd99e
+  settings:
+    defaultOperations: /preview/-/quality/smart/-/format/auto/-/progressive/yes/
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog" # Used in the UI
+    extension: "json"
+    folder: "static/posts" # The path to the folder where our blog posts are stored
+    create: true # Allow users to create new documents in this collection
+    preview_path: "blog/{{slug}}"
+    fields: # The fields for each document
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "MM/DD/YYYY",
+          date_format: "MM/DD/YYYY",
+          time_format: "",
+        }
+
+  - name: "video" # Used in routes, e.g., /admin/collections/blog
+    label: "Video" # Used in the UI
+    extension: "json"
+    folder: "static/video" # The path to the folder where our blog posts are stored
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields for each document
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "YouTube Link", name: "link", widget: "string" }
+      - { label: "Credits", name: "credits", widget: "text" }
+      - { label: "Release", name: "release", widget: "date" }
+      - {label: "Featured Image", name: "image", widget: "image"}
+  - name: "Album" # Used in routes, e.g., /admin/collections/blog
+    label: "Album" # Used in the UI
+    extension: "json"
+    folder: "static/albums" # The path to the folder where our blog posts are stored
+    create: true # Allow users to create new documents in this collection
+    # nested:
+    #   depth: 2 # max depth to show in the collection tree
+    widget: list
+    fields:
+      - { name: title, label: title, widget: string }
+      - { name: release, label: release, widget: date }
+      - {
+          name: runtime,
+          label: runtime,
+          widget: string,
+          pattern:
+            ['^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$', "HH:MM:SS"],
+        }
+      - name: song
+        label: song
+        widget: list
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { name: lyrics, label: lyrics, widget: text, }
+          - { name: credits, label: credits, widget: string, default: " "}
+  - label: "Pages"
+    name: "pages"
+    extension: "json"
+    files:
+      - label: "tour"
+        name: "tour"
+        file: "static/tour.json"
+        fields:
+          - label: Show
+            name: show
+            widget: list
+            fields:
+              - {
+                  label: Date,
+                  name: date,
+                  widget: datetime,
+                  format: "MM/DD",
+                  date_format: "MM/DD/YYYY",
+                  time_format: "",
+                }
+              - { label: City, name: City, widget: string }
+              - { label: Venue, name: venue, widget: string }
+              - { label: Link, name: link, widget: string }

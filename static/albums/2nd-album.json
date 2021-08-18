@@ -1,0 +1,17 @@
+{
+  "release": "2021-07-20T20:53:33.999Z",
+  "title": "2nd album",
+  "runtime": "23:30:30",
+  "song": [
+    {
+      "title": "another",
+      "lyrics": "another\nanother\nanother\n",
+      "credits": "Written by Roy Blair Produced by Slaters & Roy Blair"
+    },
+    {
+      "title": "anotheranother",
+      "lyrics": "anotheranotheranother\nanotheranother\nanotheranother\nanotheranother",
+      "credits": " "
+    }
+  ]
+}
